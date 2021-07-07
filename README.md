@@ -1,5 +1,5 @@
 # secure-pipeline-advisor
-descricao
+This project allows you to improve the security quality of your project, by running some of the main security checks/validation in a simple way on different projects languages and you can quick integrate it in the current most popular CI/CD tools.
 
 ## Purpose
 

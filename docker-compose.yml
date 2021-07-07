@@ -8,6 +8,6 @@ services:
     working_dir: /app/security-tests
     volumes:
       - ./:/app/security-tests
-      - /tmp/reportstst:/opt/job-reports
+      - ./job-reports:/opt/job-reports
     command:
       "ls"
