@@ -57,6 +57,7 @@ There are many ways to run all of those checks. The recommended way to run those
 
 #### Running the script
 To perform the checks by using the script is a pretty simple task, you can do all of that by just running these commands:
+
 `chmod +x run-sec-advisor.sh` - it will able this script to be run
 
 `./run-sec-advisor.sh` - it will start the script and show you the options to run the tests
