@@ -132,9 +132,10 @@ In the case of the docker-compose run, every execution of the same tool will rep
 
 ## Jenkins Integration
 [Jenkins]() - (https://www.jenkins.io/)
+<br />
 <img src="docs/resources/logos/jenkins-logo.png" alt="Jenkins Pipeline Report Example" width="40" height="50">
 </img>
-
+<br />
  _"The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project."_
 
 ### Pre-requisites
@@ -159,11 +160,14 @@ To run the all the validations its even easier, you have just to press the "play
 After you press the "play" all the analysis and checks will be performed, and each one of those are completely independent, which means that if a previous step of the pipeline (one of the validations) fails, all of the next validations are going to run anyway, they don't run based on the previous validation success... Once again, all of these runs are completely independent.
 
 This image below is an example of this pipeline and it shows also that the steps are independent:
+<br />
 <img src="docs/resources/01-jenkins-pipe.png" lt="Jenkins Pipeline Example" width="800" height="160">
 
 ### Report generation
 
 If you have configured your Jenkins HTML Publish plugin properly, each report will be showed in the left sidebar of your jenkins job. The reports are going to be show in a way similar to this one:
+
+<br />
 <img src="docs/resources/02-jenkins-pipe-report.png" lt="Jenkins Pipeline Report Example" width="280" height="400">
 
 ## LICENSE
