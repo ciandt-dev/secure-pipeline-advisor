@@ -1,0 +1,86 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                checkout([$class: 'GitSCM',
+                branches: [[name: '*/main']],
+                doGenerateSubmoduleConfigurations: false,
+                extensions: [[$class: 'CloneOption', noTags: true, reference: '', shallow: true]],
+                submoduleCfg: [],
+                userRemoteConfigs: [[url: '<your-url-project>']]
+                ]);
+            }
+        }
+        stage('Build Project') {
+            steps {
+                sh "docker-compose run security-tests mvn clean install -DskipTests"
+                sh "docker-compose run security-tests mvn clean compile package"
+            }
+        }
+        stage('Git Secrets Check ') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "docker-compose run security-tests gitleaks --path <repository path> -v --report=/opt/job-reports/gitleaksreport.json"
+                    }
+                }
+        }
+
+        stage('Dependency Check ') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "docker-compose run security-tests dependency-check --project '<Project Name>' --scan <repository path> --out /opt/job-reports/"
+                }
+            }
+        }
+
+        stage('SSL Certificates Check ') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                        sh "docker-compose run security-tests sslyze <Application's IP or DNS> --json_out=/opt/job-reports/sslyze-analysis.json"
+                    }
+                }
+        }
+
+        stage('SAST Find Sec Bugs (Code) ') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "docker-compose run security-tests findsecbugs -progress -html -output /opt/job-reports/findsecbug-analysis.htm <repository path>/target/*.jar"
+                    }
+                }
+        }
+
+        stage('mBDD') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "docker-compose run security-tests mvn clean test"
+                }
+            }
+        }
+
+
+        stage('Test Reporting') {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh "echo 'GENERATING REPORTS....'"
+                }
+            }
+            post {
+                always{
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'job-reports/', reportFiles: 'gitleaks-analysis.json', reportName: 'GitLeaks Report', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'job-reports/', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check Report', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'job-reports/', reportFiles: 'sslyze-analysis.json', reportName: '', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'job-reports/', reportFiles: 'reportowaspfindsecbugs.htm', reportName: 'SAST Owasp Find Sec Code Bugs', reportTitles: ''])
+                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'job-reports/', reportFiles: 'index.html', reportName: 'mBDD Test Report', reportTitles: ''])
+                }
+                success {
+                    echo "OK"
+                }
+            }
+        }
+
+
+
+    }
+}
