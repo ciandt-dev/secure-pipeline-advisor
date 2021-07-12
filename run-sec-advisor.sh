@@ -37,7 +37,7 @@ function _run_certified_analysis() {
         printf "\n\n"
     fi
 
-    docker-compose run security-tests sslyze ${URL_MACHINE_APPLICATION} --json_out=/opt/job-reports/sslyze-analysis_${current_date}.json
+    docker-compose run security-tests sslyze --regular ${URL_MACHINE_APPLICATION} --json_out=/opt/job-reports/sslyze-analysis_${current_date}.json
     printf "\n the analysis has been concluded..."
     printf "\n report generated at $(pwd)/$HOST_REPORTS_FOLDER/sslyze-analysis_${current_date}.json\n\n"
     exit 0
