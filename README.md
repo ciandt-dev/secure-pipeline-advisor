@@ -7,15 +7,16 @@ This project allows you to improve your code security by running different secur
 * Help improve application security with automated results
 
 ## What validations are performed by this project?
-* Git Secrets - find out possible credential leaks on code;
-* Dependency Check - detects publicly disclosed vulnerabilities in application dependencies;
-* SSL Scanning - analyze the SSL/TLS configuration of a server;
-* Static Code Analysis - analyse applications's source code;
-* Automated Functional Penetration Testing - custom security tests  ==WIP==
+* **Git Secrets** - find out possible credential leaks on code;
+* **Dependency Check** - detects publicly disclosed vulnerabilities in application dependencies;
+* **SSL Scanning** - analyze the SSL/TLS configuration of a server;
+* **Static Code Analysis** - analyse applications's source code;
+* **Automated Functional Penetration Testing** - custom security tests  ==WIP==
 
 
-## Architecture
-==WIP==
+## Solution / Architecture
+<br />
+<img src="docs/resources/03-solution-security-pipe-advisor.png" lt="The Solution - Security Pipe Advisor" width="1000" height="550">
 
 ### Tools
 * [GitLeaks](https://github.com/zricethezav/gitleaks)

@@ -26,7 +26,7 @@ All feature requests should start with [submitting an issue](../../../issues/new
 
 1. [Fork][fork] this repo
 2. Clone your fork and create a new branch: `$git checkout https://github.com/your_username_here/repo_name -b feature/name_for_new_branch`.
-    * the branch's name should start with feature/ for new features, and with hotfix/ for bug fixes
+    * the branch's name should start with **feature/** _for new features_, and with **hotfix/** _for bug fixes_
 3. Make changes and test
 4. Publish the changes to your fork
 5. Submit a [Pull Request][pulls] with comprehensive description of changes
