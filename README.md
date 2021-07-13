@@ -1,5 +1,5 @@
 # secure-pipeline-advisor
-This project allows you to improve your code security by running different security checks/validation in a simple way. It runs on different languages, and also integrates with popular CI/CD tools.
+This project allows you to improve your code security by running different security checks/validation in a simple way. It runs on different languages, and you can also integrate with popular CI/CD tools.
 
 ## Purpose
 * Run essential security check/analysis in a single container
