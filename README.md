@@ -169,4 +169,4 @@ If you have configured your Jenkins HTML Publish plugin properly, each report wi
 <img src="docs/resources/02-jenkins-pipe-report.png" lt="Jenkins Pipeline Report Example" width="280" height="400">
 
 ## LICENSE
-==WIP==
+[LICENSE](LICENSE)
