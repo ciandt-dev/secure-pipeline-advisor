@@ -15,11 +15,11 @@ changes.
 
 ## Found a bug?
 
-You can use [issues](../../issues) to report bugs. Choose the `bug template` and provide all the requested information, otherwise your issue could be closed. Please also feel free to submit a Pull Request with a fix for the bug!
+You can use [issues](../../../issues) to report bugs. Choose the `bug template` and provide all the requested information, otherwise your issue could be closed. Please also feel free to submit a Pull Request with a fix for the bug!
 
 ## Have a Feature Request?
 
-All feature requests should start with [submitting an issue](../../issues/new) documenting the user story and acceptance criteria. Choose the `feature request template` and provide all the requested information, otherwise your issue could be closed. Again, feel free to submit a `Pull Request` with a proposed implementation of the feature.
+All feature requests should start with [submitting an issue](../../../issues/new) documenting the user story and acceptance criteria. Choose the `feature request template` and provide all the requested information, otherwise your issue could be closed. Again, feel free to submit a `Pull Request` with a proposed implementation of the feature.
 
 ## How to submit Pull Requests
 
