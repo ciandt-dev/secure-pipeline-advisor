@@ -1,6 +1,6 @@
 #!/bin/bash
 # @Author: Rodrigo Alves (rodrigoalves@ciandt.com)
-# Version: 0.1
+# Version: 1.0.0
 
 APPLICATION_NAME=
 REPOSITORY_PATH=
