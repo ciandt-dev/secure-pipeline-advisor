@@ -61,6 +61,8 @@ then
 mvn compile package
 ```
 
+### Script Execution
+
 #### Script requirements
 * Docker Engine (>= 19.03.0)
 * docker-compose (>= 1.26.0)
