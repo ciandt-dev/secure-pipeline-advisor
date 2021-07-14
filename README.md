@@ -48,6 +48,19 @@ This project allows you to improve your code security by running different secur
 ## Usage
 It is possible to run the security tests from the script, or from scratch using docker instructions described below.
 
+### Language Requirements
+For some of the checks, to validate in some languages you have first to build the project properly, so below are the requirements for the each language current supported:
+
+#### Java
+Run the following commands in your project:
+```
+mvn clean install
+```
+then
+```
+mvn compile package
+```
+
 #### Script requirements
 * Docker Engine (>= 19.03.0)
 * docker-compose (>= 1.26.0)
