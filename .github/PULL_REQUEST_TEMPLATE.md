@@ -17,7 +17,7 @@ _Put an `x` in the boxes that apply_
 
 _Put an `x` in the boxes that apply. You can also fill these out after creating the PR. If you're unsure about any of them, don't hesitate to ask. We're here to help! This is simply a reminder of what we are going to look for before merging your code._
 
-- [ ] I have read the [CONTRIBUTING](https://github.com/appium/appium/blob/master/CONTRIBUTING.md) doc
+- [ ] I have read the [CONTRIBUTING](https://github.com/ciandt-dev/secure-pipeline-advisor/blob/master/.github/CONTRIBUTING.md) doc
 - [ ] I have tested to prove that my fix is effective or that my feature works
 - [ ] I have added necessary documentation (if appropriate)
 - [ ] Code compiles correctly
