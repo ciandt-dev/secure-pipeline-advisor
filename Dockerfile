@@ -108,7 +108,7 @@ RUN sed -i -e 's/\r$//' /opt/findsecbugs-fsb/findsecbugs.sh
 RUN ln -s /opt/findsecbugs-fsb/findsecbugs.sh /usr/bin/findsecbugs
 RUN findsecbugs -version
 
-## Dependency Check
+## Insider Sec CLI
 ARG INSIDERSEC_CLI_VERSION=3.0.0
 RUN wget https://github.com/insidersec/insider/releases/download/${INSIDERSEC_CLI_VERSION}/insider_${INSIDERSEC_CLI_VERSION}_linux_x86_64.tar.gz -P /tmp
 RUN mkdir /opt/insidersec-cli
