@@ -19,6 +19,9 @@ function define_configs() {
     if [ -z "$REPOSITORY_PATH" ];then
         echo "Type the repository path (type '.' for current folder path):"
         read REPOSITORY_PATH;
+        if [ "$REPOSITORY_PATH" = "." ]; then
+            REPOSITORY_PATH=$(pwd)
+        fi
         printf "\n\n"
     fi
 
@@ -81,7 +84,7 @@ function __run_JS_sast_code_analysis() {
 
 function _run_sast_code_analysis() {
     define_configs
-    
+
     shopt -s nocasematch
     case "${PROJECT_LANGUAGE}" in
         "java") __run_Java_sast_code_analysis ;;
