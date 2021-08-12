@@ -4,6 +4,7 @@
 
 APPLICATION_NAME=
 REPOSITORY_PATH=
+PROJECT_LANGUAGE=
 current_date="$(date +'%Y%m%d_%H%M')"
 HOST_REPORTS_FOLDER="job-reports"
 
@@ -18,6 +19,16 @@ function define_configs() {
     if [ -z "$REPOSITORY_PATH" ];then
         echo "Type the repository path (type '.' for current folder path):"
         read REPOSITORY_PATH;
+        if [ "$REPOSITORY_PATH" = "." ]; then
+            REPOSITORY_PATH=$(pwd)
+        fi
+        printf "\n\n"
+    fi
+
+    if [ -z "$PROJECT_LANGUAGE" ];then
+        echo "Define the the project language used:"
+        printf "(available options: java, javascript, typescript)\n:"
+        read PROJECT_LANGUAGE;
         printf "\n\n"
     fi
 }
@@ -51,11 +62,37 @@ function _run_dependency_and_libs_checking() {
     exit 0
 }
 
-function _run_sast_code_analysis() {
+function __run_java_sast_code_analysis() {
     define_configs
     docker-compose run security-tests findsecbugs -progress -html -output /opt/job-reports/findsecbug-analysis_${current_date}.htm ${REPOSITORY_PATH}/target/*.jar
     printf "\n the analysis has been concluded..."
     printf "\n report generated at $(pwd)/$HOST_REPORTS_FOLDER/findsecbug-analysis_${current_date}.htm\n\n"
+    exit 0
+}
+
+function __run_js_sast_code_analysis() {
+    define_configs
+    docker-compose run security-tests findsecbugs -progress -html -output /opt/job-reports/findsecbug-analysis_${current_date}.htm ${REPOSITORY_PATH}/target/*.jar
+    docker-compose run security-tests insider --tech javascript --target ${REPOSITORY_PATH}
+    docker-compose run security-tests mv report.html /opt/job-reports/insidersec_analysis_${current_date}_report.html
+    docker-compose run security-tests mv report.json /opt/job-reports/insidersec_analysis_${current_date}_report.json
+    docker-compose run security-tests cp style.css /opt/job-reports/style.css
+    docker-compose run security-tests mv style.css /opt/job-reports/insidersec_analysis_${current_date}_style.css
+    printf "\n the analysis has been concluded..."
+    printf "\n report generated at $(pwd)/$HOST_REPORTS_FOLDER/insidersec_analysis_${current_date}_report.html\n\n"
+    exit 0
+}
+
+function _run_sast_code_analysis() {
+    define_configs
+
+    shopt -s nocasematch
+    case "${PROJECT_LANGUAGE}" in
+        "java") __run_java_sast_code_analysis ;;
+        "javascript") __run_js_sast_code_analysis ;;
+        "typescript") __run_js_sast_code_analysis ;;
+        *)  echo "Option not found!!"; clear ; _run;;
+    esac
     exit 0
 }
 
