@@ -4,8 +4,7 @@ services:
     labels:
       author: "Rodrigo Alves"
       author_github: "https://github.com/ralves20"
-    # image: ralves20/sec-tests:1.0
-    image: ralves20/sec-tests:SNAPSHOT-01
+    image: ralves20/sec-tests:1.1
     working_dir: /app/security-tests
     environment:
       - REPOSITORY_PATH=$REPOSITORY_PATH
