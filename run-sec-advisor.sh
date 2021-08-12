@@ -27,6 +27,7 @@ function define_configs() {
 
     if [ -z "$PROJECT_LANGUAGE" ];then
         echo "Define the the project language used:"
+        printf "(available options: java, javascript, typescript)\n:"
         read PROJECT_LANGUAGE;
         printf "\n\n"
     fi
@@ -61,7 +62,7 @@ function _run_dependency_and_libs_checking() {
     exit 0
 }
 
-function __run_Java_sast_code_analysis() {
+function __run_java_sast_code_analysis() {
     define_configs
     docker-compose run security-tests findsecbugs -progress -html -output /opt/job-reports/findsecbug-analysis_${current_date}.htm ${REPOSITORY_PATH}/target/*.jar
     printf "\n the analysis has been concluded..."
@@ -69,7 +70,7 @@ function __run_Java_sast_code_analysis() {
     exit 0
 }
 
-function __run_JS_sast_code_analysis() {
+function __run_js_sast_code_analysis() {
     define_configs
     docker-compose run security-tests findsecbugs -progress -html -output /opt/job-reports/findsecbug-analysis_${current_date}.htm ${REPOSITORY_PATH}/target/*.jar
     docker-compose run security-tests insider --tech javascript --target ${REPOSITORY_PATH}
@@ -87,9 +88,9 @@ function _run_sast_code_analysis() {
 
     shopt -s nocasematch
     case "${PROJECT_LANGUAGE}" in
-        "java") __run_Java_sast_code_analysis ;;
-        "javascript") __run_JS_sast_code_analysis ;;
-        x)  echo "Bye"; exit 0;;
+        "java") __run_java_sast_code_analysis ;;
+        "javascript") __run_js_sast_code_analysis ;;
+        "typescript") __run_js_sast_code_analysis ;;
         *)  echo "Option not found!!"; clear ; _run;;
     esac
     exit 0
