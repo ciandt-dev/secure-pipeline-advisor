@@ -108,6 +108,16 @@ RUN sed -i -e 's/\r$//' /opt/findsecbugs-fsb/findsecbugs.sh
 RUN ln -s /opt/findsecbugs-fsb/findsecbugs.sh /usr/bin/findsecbugs
 RUN findsecbugs -version
 
+## Dependency Check
+ARG INSIDERSEC_CLI_VERSION=3.0.0
+RUN wget https://github.com/insidersec/insider/releases/download/${INSIDERSEC_CLI_VERSION}/insider_${INSIDERSEC_CLI_VERSION}_linux_x86_64.tar.gz -P /tmp
+RUN mkdir /opt/insidersec-cli
+RUN tar -zxf /tmp/insider_${INSIDERSEC_CLI_VERSION}_linux_x86_64.tar.gz --directory /opt/insidersec-cli
+RUN ls /opt/insidersec-cli
+RUN chmod +x /opt/insidersec-cli/insider
+RUN ln -s /opt/insidersec-cli/insider /usr/bin/insider
+RUN insider -version
+
 
 
 # Set config to job reports
