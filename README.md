@@ -1,6 +1,10 @@
-# secure-pipeline-advisor
+# Security Pipeline Advisor
 
 This project allows you to improve your code security by running different security checks/validation in a simple way. It runs on different languages, and you can also integrate with popular CI/CD tools.
+
+<img src="docs/resources/logos/sec-pipe-advisor-logo.png" alt="Security Pipeline Advisor Logo" width="350" height="350">
+</img>
+<br />
 
 ## Purpose
 
